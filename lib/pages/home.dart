@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Search Section - FIXED BOXSHADOW ERROR
+            // Search Section
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Row(
@@ -127,26 +127,30 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 30),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Text("Kategori", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              child: Text("Cari Berdasarkan Brand", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ),
             const SizedBox(height: 15),
 
-            // Kategori Horizontal Scroll
+            // Kategori Horizontal Scroll (Brand Mobil)
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 20, bottom: 10),
               child: Row(
                 children: [
-                  _buildCategoryIcon(Icons.grid_view_rounded, "Semua", true),
-                  _buildCategoryIcon(Icons.directions_car, "Sedan", false),
-                  _buildCategoryIcon(Icons.airport_shuttle, "SUV", false),
-                  _buildCategoryIcon(Icons.electric_car, "EV", false),
-                  _buildCategoryIcon(Icons.sports_motorsports, "Sport", false),
+                  _buildBrandIcon("Toyota", "https://www.carlogos.org/car-logos/toyota-logo-2020-640.png"),
+                  _buildBrandIcon("Honda", "https://www.carlogos.org/car-logos/honda-logo-1700x1150.png"),
+                  _buildBrandIcon("Mitsubishi", "https://www.carlogos.org/car-logos/mitsubishi-logo-2100x1900.png"),
+                  _buildBrandIcon("Suzuki", "https://www.carlogos.org/car-logos/suzuki-logo-1800x1800.png"),
+                  _buildBrandIcon("Hyundai", "https://www.carlogos.org/car-logos/hyundai-logo-1900x950.png"),
+                  _buildBrandIcon("Nissan", "https://www.carlogos.org/car-logos/nissan-logo-2020-640.png"),
+                  _buildBrandIcon("BMW", "https://www.carlogos.org/car-logos/bmw-logo-2020-640.png"),
+                  _buildBrandIcon("Ferrari", "https://www.carlogos.org/car-logos/ferrari-logo-750x1100.png"),
+                  _buildBrandIcon("Lamborghini", "https://www.carlogos.org/car-logos/lamborghini-logo-1000x1100.png"),
                 ],
               ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -186,24 +190,34 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryIcon(IconData icon, String label, bool isActive) {
+  // Widget Brand Mobil dengan Gambar
+  Widget _buildBrandIcon(String label, String imageUrl) {
     return Container(
       margin: const EdgeInsets.only(right: 15),
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.all(15),
+            width: 70,
+            height: 70,
+            padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: isActive ? const Color(0xFF1E3C72) : Colors.white,
-              borderRadius: BorderRadius.circular(18),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
               boxShadow: [
-                if (!isActive) BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)
+                BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, 4))
               ],
             ),
-            child: Icon(icon, color: isActive ? Colors.white : const Color(0xFF1E3C72)),
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.contain,
+              errorBuilder: (context, error, stackTrace) => const Icon(Icons.directions_car),
+            ),
           ),
           const SizedBox(height: 8),
-          Text(label, style: TextStyle(fontSize: 12, fontWeight: isActive ? FontWeight.bold : FontWeight.normal)),
+          Text(
+            label, 
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.black87)
+          ),
         ],
       ),
     );
