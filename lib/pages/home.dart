@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
     {"name": "Honda NSX 2025", "type": "Supercar", "rating": "5.0", "price": "Rp 10jt/hari"},
   ];
 
-  // --- DATA BARU: Data Mobil Mitsubishi ---
+  // --- DATA MOBIL MITSUBISHI ---
   final List<Map<String, String>> mitsubishiCars = [
     {"name": "Lancer 2016", "type": "Sedan", "rating": "4.6", "price": "Rp 500rb/hari"},
     {"name": "Pajero Sport 2019", "type": "SUV", "rating": "4.8", "price": "Rp 1jt/hari"},
@@ -44,6 +44,17 @@ class _HomePageState extends State<HomePage> {
     {"name": "Xpander 2021", "type": "MPV", "rating": "4.7", "price": "Rp 450rb/hari"},
     {"name": "Xpander Cross 2022", "type": "SUV", "rating": "4.8", "price": "Rp 550rb/hari"},
     {"name": "Outlander PHEV 2023", "type": "Hybrid", "rating": "4.9", "price": "Rp 1.2jt/hari"},
+  ];
+
+  // --- DATA BARU: Data Mobil Suzuki ---
+  final List<Map<String, String>> suzukiCars = [
+    {"name": "S-Presso 2015", "type": "City Car", "rating": "4.4", "price": "Rp 250rb/hari"},
+    {"name": "Ignis 2016", "type": "City Car", "rating": "4.6", "price": "Rp 300rb/hari"},
+    {"name": "Ciaz 2018", "type": "Sedan", "rating": "4.5", "price": "Rp 400rb/hari"},
+    {"name": "Ertiga 2016", "type": "MPV", "rating": "4.7", "price": "Rp 450rb/hari"},
+    {"name": "Ertiga Hybrid 2022", "type": "Hybrid", "rating": "4.8", "price": "Rp 600rb/hari"},
+    {"name": "Carry Pick Up 2018", "type": "Pickup", "rating": "4.3", "price": "Rp 300rb/hari"},
+    {"name": "Suzuki 2023", "type": "General", "rating": "4.7", "price": "Rp 500rb/hari"},
   ];
 
   @override
@@ -131,7 +142,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             // --- LOGIKA PERUBAHAN LIST MOBIL ---
-            // Termasuk logic untuk Mitsubishi
+            // Termasuk logic untuk Suzuki
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -141,7 +152,9 @@ class _HomePageState extends State<HomePage> {
                       ? hondaCars.map((car) => _buildCarCard(car['name']!, car['type']!, car['rating']!, car['price']!)).toList()
                       : selectedBrand == "Mitsubishi"
                           ? mitsubishiCars.map((car) => _buildCarCard(car['name']!, car['type']!, car['rating']!, car['price']!)).toList()
-                          : [const Center(child: Padding(padding: EdgeInsets.all(20), child: Text("Data mobil untuk brand ini belum tersedia")))],
+                          : selectedBrand == "Suzuki"
+                              ? suzukiCars.map((car) => _buildCarCard(car['name']!, car['type']!, car['rating']!, car['price']!)).toList()
+                              : [const Center(child: Padding(padding: EdgeInsets.all(20), child: Text("Data mobil untuk brand ini belum tersedia")))],
               ),
             ),
           ],
