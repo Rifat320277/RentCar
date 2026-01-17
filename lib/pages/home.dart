@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     {"name": "Calya 2018", "type": "MPV", "rating": "4.5", "price": "Rp 350rb/hari"},
     {"name": "Avanza 2015", "type": "MPV", "rating": "4.6", "price": "Rp 300rb/hari"},
     {"name": "Innova 2021", "type": "MPV", "rating": "4.8", "price": "Rp 750rb/hari"},
-    {"name": "Yaris 2029", "type": "Hatchback", "rating": "4.9", "price": "Rp 550rb/hari"},
+    {"name": "Yaris 2023", "type": "Hatchback", "rating": "4.9", "price": "Rp 550rb/hari"},
   ];
 
   // --- DATA MOBIL HONDA ---
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
     {"name": "Outlander PHEV 2023", "type": "Hybrid", "rating": "4.9", "price": "Rp 1.2jt/hari"},
   ];
 
-  // --- DATA BARU: Data Mobil Suzuki ---
+  // --- DATA MOBIL SUZUKI ---
   final List<Map<String, String>> suzukiCars = [
     {"name": "S-Presso 2015", "type": "City Car", "rating": "4.4", "price": "Rp 250rb/hari"},
     {"name": "Ignis 2016", "type": "City Car", "rating": "4.6", "price": "Rp 300rb/hari"},
@@ -54,7 +54,18 @@ class _HomePageState extends State<HomePage> {
     {"name": "Ertiga 2016", "type": "MPV", "rating": "4.7", "price": "Rp 450rb/hari"},
     {"name": "Ertiga Hybrid 2022", "type": "Hybrid", "rating": "4.8", "price": "Rp 600rb/hari"},
     {"name": "Carry Pick Up 2018", "type": "Pickup", "rating": "4.3", "price": "Rp 300rb/hari"},
-    {"name": "Suzuki 2023", "type": "General", "rating": "4.7", "price": "Rp 500rb/hari"},
+    {"name": "Jimny 2023", "type": "SUV", "rating": "4.9", "price": "Rp 800rb/hari"},
+  ];
+
+  // --- DATA BARU: Data Mobil HYUNDAI ---
+  final List<Map<String, String>> hyundaiCars = [
+    {"name": "Hyundai Creta 2023", "type": "SUV", "rating": "4.7", "price": "Rp 650rb/hari"},
+    {"name": "Hyundai Stargazer 2023", "type": "MPV", "rating": "4.6", "price": "Rp 550rb/hari"},
+    {"name": "Santa Fe 2022", "type": "SUV", "rating": "4.8", "price": "Rp 1.2jt/hari"},
+    {"name": "Ioniq 5 2023", "type": "Electric", "rating": "4.9", "price": "Rp 1.5jt/hari"},
+    {"name": "Grand i10 2020", "type": "City Car", "rating": "4.5", "price": "Rp 350rb/hari"},
+    {"name": "Tucson 2021", "type": "SUV", "rating": "4.7", "price": "Rp 900rb/hari"},
+    {"name": "H-1 2019", "type": "MPV", "rating": "4.6", "price": "Rp 800rb/hari"},
   ];
 
   @override
@@ -124,6 +135,7 @@ class _HomePageState extends State<HomePage> {
                   _buildBrandIcon("Honda", "https://www.carlogos.org/car-logos/honda-logo-1700x1150.png"),
                   _buildBrandIcon("Mitsubishi", "https://www.carlogos.org/car-logos/mitsubishi-logo-2100x1900.png"),
                   _buildBrandIcon("Suzuki", "https://www.carlogos.org/car-logos/suzuki-logo-1800x1800.png"),
+                  // Ikon Hyundai sudah ada di kode asli
                   _buildBrandIcon("Hyundai", "https://www.carlogos.org/car-logos/hyundai-logo-1900x950.png"),
                 ],
               ),
@@ -142,7 +154,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             // --- LOGIKA PERUBAHAN LIST MOBIL ---
-            // Termasuk logic untuk Suzuki
+            // Termasuk logic untuk Hyundai
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -154,7 +166,9 @@ class _HomePageState extends State<HomePage> {
                           ? mitsubishiCars.map((car) => _buildCarCard(car['name']!, car['type']!, car['rating']!, car['price']!)).toList()
                           : selectedBrand == "Suzuki"
                               ? suzukiCars.map((car) => _buildCarCard(car['name']!, car['type']!, car['rating']!, car['price']!)).toList()
-                              : [const Center(child: Padding(padding: EdgeInsets.all(20), child: Text("Data mobil untuk brand ini belum tersedia")))],
+                              : selectedBrand == "Hyundai" // LOGIKA BARU UNTUK HYUNDAI
+                                  ? hyundaiCars.map((car) => _buildCarCard(car['name']!, car['type']!, car['rating']!, car['price']!)).toList()
+                                  : [const Center(child: Padding(padding: EdgeInsets.all(20), child: Text("Data mobil untuk brand ini belum tersedia")))],
               ),
             ),
           ],
